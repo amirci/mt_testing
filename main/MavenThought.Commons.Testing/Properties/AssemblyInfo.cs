@@ -1,35 +1,10 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyTitle("MavenThought.Commons.Testing")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("eXPerience")]
-[assembly: AssemblyProduct("MavenThought.Commons.Testing")]
-[assembly: AssemblyCopyright("Copyright © MavenThought Inc. 2009")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyTitle("MavenThought Testing")]
+[assembly: AssemblyDescription("Framework to provide base classes to test enforcing Given, When, Then and using automocking")]
+[assembly: AssemblyCompany("MavenThought Inc.")]
+[assembly: AssemblyProduct("MavenThought Testing Framework")]
+[assembly: AssemblyCopyright("MavenThought Inc. 2010")]
+[assembly: AssemblyVersion("0.2.0.0")]
 
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2ee252b5-a315-4815-bb57-614eb547e5ae")]
-
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-[assembly: AssemblyVersion("0.2.0.54945")]
-[assembly: AssemblyFileVersion("0.2.0.54945")]
