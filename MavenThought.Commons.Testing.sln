@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenThought.Commons.Testing", "main\MavenThought.Commons.Testing\MavenThought.Commons.Testing.csproj", "{4E58AA39-C923-4536-BAEB-3BB7D855FF13}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1AED2709-E3F1-43D7-9089-EF8AFEA56C4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenThought.Commons.Testing.Tests", "test\MavenThought.Commons.Testing.Tests\MavenThought.Commons.Testing.Tests.csproj", "{92C3DB7B-6E96-4F66-AD74-805EFDFFA714}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,8 +17,15 @@ Global
 		{4E58AA39-C923-4536-BAEB-3BB7D855FF13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E58AA39-C923-4536-BAEB-3BB7D855FF13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E58AA39-C923-4536-BAEB-3BB7D855FF13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C3DB7B-6E96-4F66-AD74-805EFDFFA714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C3DB7B-6E96-4F66-AD74-805EFDFFA714}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C3DB7B-6E96-4F66-AD74-805EFDFFA714}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C3DB7B-6E96-4F66-AD74-805EFDFFA714}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{92C3DB7B-6E96-4F66-AD74-805EFDFFA714} = {1AED2709-E3F1-43D7-9089-EF8AFEA56C4A}
 	EndGlobalSection
 EndGlobal
