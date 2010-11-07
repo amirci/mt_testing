@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<Target Name="Review">
+		<PropertyGroup>
+			<Reviewers>-r mitchl@price-hvac.com,georgec@price-hvac.com,seanbe@price-hvac.com</Reviewers>
+			<CC>--cc=shadleyd@price-hvac.com,amirb@price-hvac.com</CC>
+			<Server>-s http://codereview.theevillittledeveloper.net</Server>
+			<Message>-m "Displacement Code Review Request"</Message>
+		</PropertyGroup>
+		<Message Text="Submitting Issue for Code Review" />
+		<Exec command="$(MSBuildProjectDirectory)\tools\CodeReview\upload.py $(Reviewers) $(CC) $(Server) $(Message) --send_mail --assume_yes"
+			  WorkingDirectory="$(MSBuildProjectDirectory)">
+		</Exec>
+		<Message Text="Code Review Request Successfully Sent" />
+	</Target>
+
+</Project>

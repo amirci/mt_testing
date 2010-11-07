@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="Simian">
+    <Message Text="##teamcity[progressStart '***************** Simian...']" />
+    <Exec IgnoreExitCode="true" 
+		  Command="tools\Simian\simian-2.2.24.exe -formatter=xml:Output\simian.xml -language=cs -excludes=main/**/*.Designer.cs main/**/*.cs" >
+    </Exec>
+    <Exec IgnoreExitCode="true" 
+		  Command="$(Xslt) Output\simian.xml tools\Simian\simian.xsl -o Output\simian.html" >
+    </Exec>
+	<Message Text="##teamcity[progressFinish '***************** Simian...']" />
+  </Target>
+  
+</Project>

@@ -1,0 +1,9 @@
+*.suo
+*.user
+*.cache
+Reports
+TestResult.xml
+_*
+Upgrade*
+Output
+*.lock
