@@ -5,10 +5,14 @@ require 'noodle'
 require 'zip/zip'
 require 'zip/zipfilesystem'
 require 'git'
+include FileUtils
 
 solution_file = FileList["*.sln"].first
 build_file = FileList["*.msbuild"].first
-deploy_folder = "c:/temp/build"
+project_name = "MavenThought.Commons.Testing"
+commit = Git.open(".").log.first.sha[0..10]
+deploy_folder = "c:/temp/build/#{project_name}_#{commit}"
+zip_file = "MavenThought.Testing"
 
 CLEAN.include("main/**/bin", "main/**/obj", "test/**/obj", "test/**/bin")
 
@@ -25,7 +29,6 @@ task :setup => ["setup:dep", "setup:noodle"]
 desc 'Build a deploy current version of the framework'
 task :deploy => ["deploy:all"]
 
-commit = Git.open(".").log.first.sha[0..10]
 
 namespace :setup do
 
@@ -68,25 +71,35 @@ namespace :deploy do
 	task :all  => [:update_version] do
 		Rake::Task["build:all"].invoke(:Release)
 		Rake::Task["deploy:package"].invoke
+		Rake::Task["deploy:merge"].invoke
 	end 
 	
-	desc 'Updates assembly version'
-	assemblyinfo :update_version do |asm|
+	task :update_version do 
+		files = FileList["main/**/Properties/AssemblyInfo.cs"]
+		files.each { |file| Rake::Task["deploy:assemblyinfo"].invoke(file) }
+	end
+	
+	assemblyinfo :assemblyinfo, :file do |asm, args|
 		asm.version = "0.2.0.0"
 		asm.company_name = "MavenThought Inc."
 		asm.product_name = "MavenThought Testing Framework"
 		asm.title = "MavenThought Testing (sha #{commit})"
 		asm.description = "Framework to provide base classes to test enforcing Given, When, Then and using automocking"
 		asm.copyright = "MavenThought Inc. 2010"
-		asm.output_file = "main/MavenThought.Commons.Testing/Properties/AssemblyInfo.cs"
+		asm.output_file = args[:file]
 	end	
 		
 	desc 'Creates a zip with the required assemblies'
 	task :package do
 		Dir.mkdir(deploy_folder) unless File.directory? deploy_folder
-		Zip::ZipOutputStream.open("#{deploy_folder}/MavenThought.Testing_#{commit}.zip") do |zos|
-			FileList["main/**/bin/Release/*.dll"].each do |file|
-				puts "Adding to zip file #{file}"
+		curdir = Dir.pwd
+		Dir.chdir("main/#{project_name}/bin/release")
+		files = FileList["*.dll"]
+		puts "Sorry can't find any files in #{Dir.pwd} to add to the zip" unless !files.empty?
+		zip_file = "#{deploy_folder}/#{zip_file}_#{commit}.zip"
+		puts "Creating zip file #{zip_file}" unless !files.empty?
+		Zip::ZipOutputStream.open(zip_file) do |zos|
+			files.each do |file|
 				# Create a new entry with some arbitrary name
 				zos.put_next_entry(file)
 				# Add the contents of the file, don't read the stuff linewise if its binary, instead use direct IO
@@ -94,6 +107,18 @@ namespace :deploy do
 				zos.write(content)
 			end
 		end
+		Dir.chdir(curdir)
+	end
+	
+	task :merge do
+		puts "Mergin assemblies into one"
+		assemblies = FileList["main/#{project_name}/bin/release/*.dll"].join " "
+		puts assemblies
+		`./tools/ilmerge/ILmerge.exe /out:#{project_name}.dll #{assemblies}`
+		merged_folder = "#{deploy_folder}/merged"
+		Dir.mkdir(merged_folder) unless File.directory? merged_folder
+		mv("#{project_name}.dll", merged_folder)
+		rm("#{project_name}.pdb")
 	end
 	
 end
