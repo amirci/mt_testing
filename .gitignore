@@ -8,3 +8,4 @@ Upgrade*
 Output
 *.lock
 lib
+.bundle
