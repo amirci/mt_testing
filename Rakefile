@@ -5,14 +5,18 @@ require 'noodle'
 require 'zip/zip'
 require 'zip/zipfilesystem'
 require 'git'
+require 'rake/gempackagetask'
+
 include FileUtils
 
 solution_file = FileList["*.sln"].first
 build_file = FileList["*.msbuild"].first
 project_name = "MavenThought.Commons.Testing"
 commit = Git.open(".").log.first.sha[0..10]
-deploy_folder = "c:/temp/build/#{project_name}_#{commit}"
-zip_file = "MavenThought.Testing"
+version = "0.2.0.0"
+deploy_folder = "c:/temp/build/#{project_name}.#{version}_#{commit}"
+merged_folder = "#{deploy_folder}/merged"
+zip_file = "#{deploy_folder}/#{project_name}.#{version}_#{commit}.zip"
 
 CLEAN.include("main/**/bin", "main/**/obj", "test/**/obj", "test/**/bin")
 
@@ -26,18 +30,15 @@ task :default => ["build:all"]
 desc 'Setup requirements to build and deploy'
 task :setup => ["setup:dep", "setup:noodle"]
 
-desc 'Build a deploy current version of the framework'
+	desc "Updates build version, generate zip, merged version and the gem in #{deploy_folder}"
 task :deploy => ["deploy:all"]
 
 
 namespace :setup do
-
 	task :dep do 
 		`bundle install `
-	end
-	
+	end	
 	Noodle::Rake::NoodleTask.new
-
 end
 
 namespace :build do
@@ -67,11 +68,11 @@ end
 
 namespace :deploy do
 
-	desc 'Updates version, build in release and generate zip on deploy folder'
 	task :all  => [:update_version] do
 		Rake::Task["build:all"].invoke(:Release)
 		Rake::Task["deploy:package"].invoke
 		Rake::Task["deploy:merge"].invoke
+		Rake::Task["deploy:gem"].invoke
 	end 
 	
 	task :update_version do 
@@ -80,7 +81,7 @@ namespace :deploy do
 	end
 	
 	assemblyinfo :assemblyinfo, :file do |asm, args|
-		asm.version = "0.2.0.0"
+		asm.version = version
 		asm.company_name = "MavenThought Inc."
 		asm.product_name = "MavenThought Testing Framework"
 		asm.title = "MavenThought Testing (sha #{commit})"
@@ -89,14 +90,12 @@ namespace :deploy do
 		asm.output_file = args[:file]
 	end	
 		
-	desc 'Creates a zip with the required assemblies'
 	task :package do
 		Dir.mkdir(deploy_folder) unless File.directory? deploy_folder
 		curdir = Dir.pwd
 		Dir.chdir("main/#{project_name}/bin/release")
 		files = FileList["*.dll"]
 		puts "Sorry can't find any files in #{Dir.pwd} to add to the zip" unless !files.empty?
-		zip_file = "#{deploy_folder}/#{zip_file}_#{commit}.zip"
 		puts "Creating zip file #{zip_file}" unless !files.empty?
 		Zip::ZipOutputStream.open(zip_file) do |zos|
 			files.each do |file|
@@ -111,15 +110,25 @@ namespace :deploy do
 	end
 	
 	task :merge do
-		puts "Mergin assemblies into one"
-		assemblies = FileList["main/#{project_name}/bin/release/*.dll"].join " "
-		puts assemblies
+		puts "Merging #{project_name} assemblies located in bin/release into one"
+		assemblies = FileList["main/#{project_name}/bin/release/*.dll"]
+		assemblies = assemblies.sort { |f1, f2| f1.include?( "Testing.dll" ) ? -1 : 0 } .join " "
 		`./tools/ilmerge/ILmerge.exe /out:#{project_name}.dll #{assemblies}`
-		merged_folder = "#{deploy_folder}/merged"
 		Dir.mkdir(merged_folder) unless File.directory? merged_folder
 		mv("#{project_name}.dll", merged_folder)
 		rm("#{project_name}.pdb")
 	end
-	
-end
 
+	task :gem do
+		rm_rf('gem/lib') if File.directory?('gem/lib')
+		mkdir('gem/lib')
+		cp("#{merged_folder}/#{project_name}.dll", "gem/lib")
+		chdir('gem')
+		spec = eval(IO.read("maventhought.testing.gemspec"))
+		spec.version = version
+		Gem::Builder.new(spec).build
+		chdir('..')
+		mv("gem/maventhought.testing-*", deploy_folder)
+	end
+  
+end
