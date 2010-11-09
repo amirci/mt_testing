@@ -128,7 +128,7 @@ namespace :deploy do
 		spec.version = version
 		Gem::Builder.new(spec).build
 		chdir('..')
-		mv("gem/maventhought.testing-*", deploy_folder)
+		FileList["gem/maventhought.testing-*.gem"].each { |f| mv(f, deploy_folder) }
 	end
   
 end
