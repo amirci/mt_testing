@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("MavenThought Testing (sha 696256e710e)")]
+[assembly: AssemblyTitle("MavenThought Testing (sha 2cb89777091)")]
 [assembly: AssemblyDescription("Framework to provide base classes to test enforcing Given, When, Then and using automocking")]
 [assembly: AssemblyCompany("MavenThought Inc.")]
 [assembly: AssemblyProduct("MavenThought Testing Framework")]

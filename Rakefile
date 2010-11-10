@@ -1,11 +1,12 @@
 require 'rubygems'    
+
 require 'albacore'
 require 'rake/clean'
-require 'noodle'
 require 'zip/zip'
 require 'zip/zipfilesystem'
 require 'git'
 require 'rake/gempackagetask'
+require 'noodle'
 
 include FileUtils
 
@@ -28,17 +29,20 @@ desc 'Default build'
 task :default => ["build:all"]
 
 desc 'Setup requirements to build and deploy'
-task :setup => ["setup:dep", "setup:noodle"]
+task :setup => ["setup:dep:download", "setup:dep:store"]
 
-	desc "Updates build version, generate zip, merged version and the gem in #{deploy_folder}"
+desc "Updates build version, generate zip, merged version and the gem in #{deploy_folder}"
 task :deploy => ["deploy:all"]
 
-
 namespace :setup do
-	task :dep do 
-		`bundle install `
-	end	
-	Noodle::Rake::NoodleTask.new
+	namespace :dep do
+		task :download do 
+			`bundle install --system`
+		end	
+		Noodle::Rake::NoodleTask.new :init do |n|
+			n.groups << :dev
+		end
+	end
 end
 
 namespace :build do
@@ -103,7 +107,7 @@ namespace :deploy do
 				zos.put_next_entry(file)
 				# Add the contents of the file, don't read the stuff linewise if its binary, instead use direct IO
 				content = IO.read(file)
-				zos.write(content)
+				zos << content
 			end
 		end
 		Dir.chdir(curdir)
@@ -113,7 +117,7 @@ namespace :deploy do
 		puts "Merging #{project_name} assemblies located in bin/release into one"
 		assemblies = FileList["main/#{project_name}/bin/release/*.dll"]
 		assemblies = assemblies.sort { |f1, f2| f1.include?( "Testing.dll" ) ? -1 : 0 } .join " "
-		`./tools/ilmerge/ILmerge.exe /out:#{project_name}.dll #{assemblies}`
+		`./tools/ilmerge/ILmerge.exe /lib:c:/Windows/Microsoft.NET/Framework/v3.5 /out:#{project_name}.dll #{assemblies}`
 		Dir.mkdir(merged_folder) unless File.directory? merged_folder
 		mv("#{project_name}.dll", merged_folder)
 		rm("#{project_name}.pdb")

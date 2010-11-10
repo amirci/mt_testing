@@ -1,17 +1,15 @@
 source :rubygems
-source :rubyforge
 
-gem 'castle.core'
-gem 'log4net'
-gem 'sharptestsex'
-gem 'commonservicelocator'
-gem 'gallio', '~> 3.2'
-gem 'rhino.mocks',  '~> 3.6'
-gem 'structuremap.automocking', '~> 2.6.1'
+gem 'albacore'
+gem 'git'
+gem 'noodle'
 
-group :build do
-	gem 'albacore'
-	gem 'git'
+group :dev do
+	gem 'sharptestsex'
+	gem 'commonservicelocator'
+	gem 'gallio', '~> 3.2'
+	gem 'rhino.mocks',  '~> 3.6'
+	gem 'structuremap.automocking', '~> 2.6.1.1'
 end
 
 group :tools do

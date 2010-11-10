@@ -65,6 +65,9 @@
     <Reference Include="Rhino.Mocks">
       <HintPath>..\..\lib\rhino.mocks-3.6.0.0\Rhino.Mocks.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\lib\structuremap.automocking-2.6.1.1\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap.AutoMocking">
       <HintPath>..\..\lib\structuremap.automocking-2.6.1\StructureMap.AutoMocking.dll</HintPath>
     </Reference>
@@ -132,9 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
