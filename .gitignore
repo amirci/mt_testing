@@ -6,6 +6,5 @@ TestResult.xml
 _*
 Upgrade*
 Output
-*.lock
 lib
 .bundle
