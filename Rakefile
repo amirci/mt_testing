@@ -34,6 +34,9 @@ task :setup => ["setup:dep:download", "setup:dep:store"]
 desc "Updates build version, generate zip, merged version and the gem in #{deploy_folder}"
 task :deploy => ["deploy:all"]
 
+desc "Run all tests"
+task :test => ["test:all"]
+
 namespace :setup do
 	namespace :dep do
 		task :download do 
@@ -62,10 +65,9 @@ end
 namespace :test do
 	
 	desc 'Run all tests'
-	msbuild :all do |msb|
-		msb.path_to_command =  msbuild_path
-		msb.targets :test
-		msb.solution = build_file
+	task :all => [:default] do 
+		tests = FileList["test/**/bin/debug/**/*.Tests.dll"].join " "
+		system "./tools/gallio/bin/gallio.echo.exe #{tests}"
 	end
 	
 end
