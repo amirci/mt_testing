@@ -29,7 +29,7 @@ desc 'Default build'
 task :default => ["build:all"]
 
 desc 'Setup requirements to build and deploy'
-task :setup => ["setup:dep:download", "setup:dep:store"]
+task :setup => ["setup:dep:download", "setup:dep:local"]
 
 desc "Updates build version, generate zip, merged version and the gem in #{deploy_folder}"
 task :deploy => ["deploy:all"]
@@ -42,7 +42,7 @@ namespace :setup do
 		task :download do 
 			system "bundle install --system"
 		end	
-		Noodle::Rake::NoodleTask.new :init do |n|
+		Noodle::Rake::NoodleTask.new :local do |n|
 			n.groups << :dev
 		end
 	end

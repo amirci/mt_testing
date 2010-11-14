@@ -15,6 +15,7 @@ GEM
     noodle (0.3.0)
       bundler (>= 1.0.0.rc.3)
       rake
+    nunit (2.5.7.10213.20100801)
     rake (0.8.7)
     rhino.mocks (3.6.0.0)
     rubyzip (0.9.4)
@@ -31,6 +32,7 @@ DEPENDENCIES
   gallio (~> 3.2)
   git
   noodle
+  nunit
   rhino.mocks (~> 3.6)
   sharptestsex
   structuremap.automocking (~> 2.6.1.1)

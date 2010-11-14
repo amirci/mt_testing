@@ -10,6 +10,7 @@ group :dev do
 	gem 'gallio', '~> 3.2'
 	gem 'rhino.mocks',  '~> 3.6'
 	gem 'structuremap.automocking', '~> 2.6.1.1'
+	gem 'nunit'
 end
 
 group :tools do
