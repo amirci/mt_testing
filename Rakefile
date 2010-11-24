@@ -17,7 +17,6 @@ commit = Git.open(".").log.first.sha[0..10]
 version = "0.2.0.0"
 deploy_folder = "c:/temp/build/#{project_name}.#{version}_#{commit}"
 merged_folder = "#{deploy_folder}/merged"
-zip_file = "#{deploy_folder}/#{project_name}.#{version}_#{commit}.zip"
 
 CLEAN.include("main/**/bin", "main/**/obj", "test/**/obj", "test/**/bin")
 
@@ -85,7 +84,10 @@ namespace :deploy do
 	
 	task :update_version do 
 		files = FileList["main/**/Properties/AssemblyInfo.cs"]
-		files.each { |file| Rake::Task["deploy:assemblyinfo"].invoke(file) }
+		files.each do |file|
+			Rake::Task["deploy:assemblyinfo"].invoke(file) 
+			Rake::Task["deploy:assemblyinfo"].reenable 
+		end
 	end
 	
 	assemblyinfo :assemblyinfo, :file do |asm, args|
@@ -99,21 +101,17 @@ namespace :deploy do
 	end	
 		
 	task :package do
-		curdir = Dir.pwd
-		Dir.chdir("main/#{project_name}/bin/release")
-		files = FileList["*.dll"]
-		puts "Sorry can't find any files in #{Dir.pwd} to add to the zip" unless !files.empty?
-		puts "Creating zip file #{zip_file}" unless !files.empty?
-		Zip::ZipOutputStream.open(zip_file) do |zos|
-			files.each do |file|
-				# Create a new entry with some arbitrary name
-				zos.put_next_entry(file)
-				# Add the contents of the file, don't read the stuff linewise if its binary, instead use direct IO
-				content = IO.read(file)
-				zos << content
-			end
+		[project_name, "#{project_name}.NUnit"].each do | proj |
+			puts "Zip contents for #{proj}"
+			Rake::Task["deploy:zip"].invoke(proj)
+			Rake::Task["deploy:zip"].reenable
 		end
-		Dir.chdir(curdir)
+	end
+		
+	zip :zip, :zip_project do |zip, args|
+		zip.directories_to_zip "main/#{args[:zip_project]}/bin/release"
+		zip.output_file =  "#{args[:zip_project]}.#{version}_#{commit}.zip"
+		zip.output_path = deploy_folder
 	end
 	
 	task :merge do
@@ -129,7 +127,7 @@ namespace :deploy do
 	task :gem do
 		rm_rf('gem/lib') if File.directory?('gem/lib')
 		mkdir('gem/lib')
-		FileList["main/**/bin/release/*.dll"].each { |f| cp(f, "gem/lib") }
+		FileList["main/#{project_name}/bin/release/*.dll"].each { |f| cp(f, "gem/lib") }
 		chdir('gem')
 		spec = eval(IO.read("maventhought.testing.gemspec"))
 		spec.version = version
