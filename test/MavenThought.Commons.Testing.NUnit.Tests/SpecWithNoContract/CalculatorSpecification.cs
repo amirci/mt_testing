@@ -1,3 +1,5 @@
+using MavenThought.Commons.Testing.Example;
+
 namespace MavenThought.Commons.Testing.NUnit.Tests.SpecWithNoContract
 {
     /// <summary>

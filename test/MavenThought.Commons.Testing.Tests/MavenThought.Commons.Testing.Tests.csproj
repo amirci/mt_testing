@@ -85,13 +85,16 @@
   <ItemGroup>
     <Compile Include="SpecWithNoContract\CalculatorSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Calculator.cs" />
     <Compile Include="SpecWithNoContract\When_calculator_adds_two_numbers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\main\MavenThought.Commons.Testing\MavenThought.Commons.Testing.csproj">
       <Project>{4E58AA39-C923-4536-BAEB-3BB7D855FF13}</Project>
       <Name>MavenThought.Commons.Testing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MavenThought.Commons.Testing.Example\MavenThought.Commons.Testing.Example.csproj">
+      <Project>{CA9984DE-A436-4302-899B-8435F9658AEC}</Project>
+      <Name>MavenThought.Commons.Testing.Example</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

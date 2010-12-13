@@ -10,3 +10,5 @@ lib
 .bundle
 *.gemspec
 pkg
+*.testsettings
+*.vsmdi

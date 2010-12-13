@@ -1,4 +1,4 @@
-﻿namespace MavenThought.Commons.Testing.NUnit.Tests
+﻿namespace MavenThought.Commons.Testing.Example
 {
     /// <summary>
     /// Calculator class to test

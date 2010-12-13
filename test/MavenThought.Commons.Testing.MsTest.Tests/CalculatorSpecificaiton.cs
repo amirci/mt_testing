@@ -1,6 +1,6 @@
-using MavenThought.Commons.Testing.Example;
+﻿using MavenThought.Commons.Testing.Example;
 
-namespace MavenThought.Commons.Testing.Tests.SpecWithNoContract
+namespace MavenThought.Commons.Testing.MsTest.Tests
 {
     /// <summary>
     /// Base class for calculator tests
