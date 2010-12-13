@@ -7,8 +7,8 @@ group :setup do
 	gem 'jeweler'
 end
 
-group :dev
-	gem 'sharptestsex'
+group :dev do
+    gem 'sharptestsex'
 end
 
 group :runtime do
