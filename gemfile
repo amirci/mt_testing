@@ -1,11 +1,17 @@
 source :rubygems
 
-gem 'albacore'
-gem 'git'
-gem 'noodle'
+group :setup do
+	gem 'albacore'
+	gem 'git'
+	gem 'noodle'
+	gem 'jeweler'
+end
 
-group :dev do
+group :dev
 	gem 'sharptestsex'
+end
+
+group :runtime do
 	gem 'commonservicelocator'
 	gem 'gallio', '~> 3.2'
 	gem 'rhino.mocks',  '~> 3.6'

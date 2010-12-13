@@ -8,3 +8,5 @@ Upgrade*
 Output
 lib
 .bundle
+*.gemspec
+pkg

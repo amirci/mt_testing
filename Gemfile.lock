@@ -1,17 +1,16 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    albacore (0.1.5)
-      net-sftp (>= 2.0.2)
-      net-ssh (>= 2.0.15)
+    albacore (0.2.2)
       rake (>= 0.8.7)
-      rubyzip (>= 0.9.1)
+      rubyzip (>= 0.9.4)
     commonservicelocator (1.0.0.0)
     gallio (3.2.601)
     git (1.2.5)
-    net-sftp (2.0.5)
-      net-ssh (>= 2.0.9)
-    net-ssh (2.0.23)
+    jeweler (1.5.1)
+      bundler (~> 1.0.0)
+      git (>= 1.2.5)
+      rake
     noodle (0.3.0)
       bundler (>= 1.0.0.rc.3)
       rake
@@ -23,7 +22,6 @@ GEM
     structuremap.automocking (2.6.1.1)
 
 PLATFORMS
-  ruby
   x86-mingw32
 
 DEPENDENCIES
@@ -31,6 +29,7 @@ DEPENDENCIES
   commonservicelocator
   gallio (~> 3.2)
   git
+  jeweler
   noodle
   nunit
   rhino.mocks (~> 3.6)

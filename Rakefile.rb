@@ -1,12 +1,9 @@
 require 'rubygems'    
 
 require 'albacore'
-require 'rake/clean'
-require 'zip/zip'
-require 'zip/zipfilesystem'
 require 'git'
-require 'rake/gempackagetask'
 require 'noodle'
+require 'rake/clean'
 
 include FileUtils
 
@@ -14,7 +11,7 @@ solution_file = FileList["*.sln"].first
 build_file = FileList["*.msbuild"].first
 project_name = "MavenThought.Commons.Testing"
 commit = Git.open(".").log.first.sha[0..10] rescue 'na'
-version = "0.2.0.0"
+version = IO.readlines('VERSION')[0] rescue "0.0.0.0"
 deploy_folder = "c:/temp/build/#{project_name}.#{version}_#{commit}"
 merged_folder = "#{deploy_folder}/merged"
 
@@ -40,6 +37,7 @@ namespace :setup do
 			system "bundle install --system"
 		end	
 		Noodle::Rake::NoodleTask.new :local do |n|
+			n.groups << :runtime
 			n.groups << :dev
 		end
 	end
@@ -75,7 +73,7 @@ namespace :deploy do
 		Dir.mkdir(deploy_folder) unless File.directory? deploy_folder
 		Rake::Task["build:all"].invoke(:Release)
 		Rake::Task["deploy:package"].invoke
-		Rake::Task["jeweler:build"].invoke
+		puts "Please look at #{deploy_folder} for deployed assets"
 	end 
 	
 	task :update_version do 
@@ -123,8 +121,15 @@ namespace :deploy do
 end
 
 namespace :jeweler do
-	require 'jeweler'  
-	
+	require 'jeweler'  	
+
+	desc 'Build the release version and copy the files to lib'
+	task :setup do
+		Rake::Task["build:all"].invoke(:Release)
+		files = Dir.glob("main/**/bin/release/Maven*.dll")
+		copy files, "lib"
+	end
+
 	Jeweler::Tasks.new do |gs|
 		gs.name = "maventhought.testing"
 		gs.summary = "Testing Framework with automocking dependencies"
@@ -134,6 +139,6 @@ namespace :jeweler do
 		gs.authors = ["Amir Barylko"]
 		gs.has_rdoc = false  
 		gs.rubyforge_project = 'maventhought.testing'  
-		gs.files = Dir.glob("main/MavenThought.Commons.Testing/bin/release/MavenThought*.dll")
+		gs.files = Dir.glob("lib/Maven*.dll")
 	end
 end
