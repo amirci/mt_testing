@@ -40,7 +40,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator.cs" />
+    <Compile Include="ICritic.cs" />
+    <Compile Include="IMovie.cs" />
+    <Compile Include="IMovieCritic.cs" />
+    <Compile Include="IMovieFactory.cs" />
+    <Compile Include="IMovieLibrary.cs" />
+    <Compile Include="IPosterService.cs" />
+    <Compile Include="MediaLibraryArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleMovieLibrary.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
