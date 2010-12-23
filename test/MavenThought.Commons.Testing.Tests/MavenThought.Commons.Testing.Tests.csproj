@@ -85,7 +85,9 @@
   <ItemGroup>
     <Compile Include="No Contract\CalculatorSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="No Contract\When_calculator_adds_two_numbers.cs" />
+    <Compile Include="No Contract\When_calculator_adds_two_numbers.cs">
+      <DependentUpon>CalculatorSpecification.cs</DependentUpon>
+    </Compile>
     <Compile Include="With Contract\SimpleMediaLibrarySpecification.cs" />
     <Compile Include="With Contract\When_media_library_adds_a_movie.cs">
       <DependentUpon>SimpleMediaLibrarySpecification.cs</DependentUpon>
