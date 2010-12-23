@@ -2183,7 +2183,7 @@
             </summary>
             <remarks>
             <para>
-            The process task provides a guarnatee that when you call <see cref="M:Gallio.Common.Concurrency.Task.Join(System.Nullable{System.TimeSpan})"/>
+            The process task provides a guarantee that when you call <see cref="M:Gallio.Common.Concurrency.Task.Join(System.Nullable{System.TimeSpan})"/>
             all redirected output from the console output and error streams will already
             have been captured and delivered to the event handlers, as appropriate.
             </para>
@@ -11841,11 +11841,6 @@
         <member name="P:Gallio.Model.Isolation.Messages.IsolatedTaskFinishedMessage.Exception">
             <summary>
             Gets or sets the exception data.
-            </summary>
-        </member>
-        <member name="T:Gallio.Model.Isolation.Messages.PingMessage">
-            <summary>
-            Tells the server that the client is active.
             </summary>
         </member>
         <member name="T:Gallio.Model.Isolation.Messages.RunIsolatedTaskMessage">
