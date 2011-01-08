@@ -20,6 +20,7 @@ GEM
     rubyzip (0.9.4)
     sharptestsex (1.0.0.0.20100911)
     structuremap.automocking (2.6.1.1)
+    xunitnet (1.6.0)
 
 PLATFORMS
   x86-mingw32
@@ -35,3 +36,4 @@ DEPENDENCIES
   rhino.mocks (~> 3.6)
   sharptestsex
   structuremap.automocking (~> 2.6.1.1)
+  xunitnet

@@ -17,6 +17,7 @@ group :runtime do
 	gem 'rhino.mocks',  '~> 3.6'
 	gem 'structuremap.automocking', '~> 2.6.1.1'
 	gem 'nunit'
+	gem 'xunitnet'
 end
 
 group :tools do
