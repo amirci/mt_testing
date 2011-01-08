@@ -3,20 +3,21 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DEA26BD0-0D03-453E-BC45-93E83CAFD3E7}</ProjectGuid>
+    <ProjectGuid>{735A6EB5-C667-48E9-8142-8ACED26EBF5F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MavenThought.Commons.Testing</RootNamespace>
-    <AssemblyName>MavenThought.Commons.Testing.xunit</AssemblyName>
+    <RootNamespace>MavenThought.Commons.Testing.Xunit.Tests</RootNamespace>
+    <AssemblyName>MavenThought.Commons.Testing.xunit.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>4.0</OldToolsVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UpgradeBackupLocation />
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,9 +30,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,21 +54,16 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\lib\commonservicelocator-1.0.0.0\net-2.0\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.Mocks">
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
       <HintPath>..\..\lib\rhino.mocks-3.6.0.0\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpTestsEx">
+      <HintPath>..\..\lib\sharptestsex-1.0.0.0.20100911\sharptestsex\SharpTestsEx.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\lib\structuremap.automocking-2.6.1.1\StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap.AutoMocking">
-      <HintPath>..\..\lib\structuremap.automocking-2.6.1.1\StructureMap.AutoMocking.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -77,34 +73,34 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
     <Reference Include="xunit">
       <HintPath>..\..\lib\xunitnet-1.6.0\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMockBaseTest.cs" />
-    <Compile Include="AutoMockBaseTestWithNoContract.cs" />
-    <Compile Include="AutoMockSpecification.cs" />
-    <Compile Include="AutoMockSpecificationWithNoContract.cs" />
-    <Compile Include="BaseSpecification.cs" />
-    <Compile Include="BaseTest.cs" />
-    <Compile Include="BaseTestWithSut.cs" />
-    <Compile Include="DummyTest.cs" />
-    <Compile Include="Expressions.cs" />
-    <Compile Include="NotifyPropertyChangedExtensions.cs" />
-    <Compile Include="ConstructorSpecificationAttribute.cs" />
-    <Compile Include="ExceptionSpecificationAttribute.cs" />
-    <Compile Include="IgnoreAttribute.cs" />
-    <Compile Include="ItShouldAttribute.cs" />
+    <Compile Include="SpecWithNoContract\CalculatorSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpecificationAttribute.cs" />
+    <Compile Include="SpecWithNoContract\When_calculator_adds_two_numbers.cs" />
+    <Compile Include="With Contract\SimpleMediaLibrarySpecification.cs" />
+    <Compile Include="With Contract\When_media_library_adds_a_movie.cs">
+      <DependentUpon>SimpleMediaLibrarySpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="With Contract\When_media_library_clears_contents.cs">
+      <DependentUpon>SimpleMediaLibrarySpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="With Contract\When_media_library_finds_the_poster.cs">
+      <DependentUpon>SimpleMediaLibrarySpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="With Contract\When_media_library_imports_movies.cs">
+      <DependentUpon>SimpleMediaLibrarySpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="With Contract\When_media_library_lists_non_violent_movies.cs">
+      <DependentUpon>SimpleMediaLibrarySpecification.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -113,7 +109,7 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
+      <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
       <Visible>False</Visible>
@@ -122,7 +118,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\main\MavenThought.Commons.Testing.Xunit\MavenThought.Commons.Testing.Xunit.csproj">
+      <Project>{DEA26BD0-0D03-453E-BC45-93E83CAFD3E7}</Project>
+      <Name>MavenThought.Commons.Testing.Xunit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MavenThought.Commons.Testing.Example\MavenThought.Commons.Testing.Example.csproj">
+      <Project>{CA9984DE-A436-4302-899B-8435F9658AEC}</Project>
+      <Name>MavenThought.Commons.Testing.Example</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
