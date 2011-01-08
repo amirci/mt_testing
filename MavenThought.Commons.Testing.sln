@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenThought.Commons.Testin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenThought.Commons.Testing.MsTest.Tests", "test\MavenThought.Commons.Testing.MsTest.Tests\MavenThought.Commons.Testing.MsTest.Tests.csproj", "{619C7141-4E52-4C25-8AF6-0C9109767C2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenThought.Commons.Testing.Xunit.Tests", "test\MavenThought.Commons.Testing.Xunit\MavenThought.Commons.Testing.Xunit.Tests.csproj", "{735A6EB5-C667-48E9-8142-8ACED26EBF5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenThought.Commons.Testing.Xunit", "main\MavenThought.Commons.Testing.Xunit\MavenThought.Commons.Testing.Xunit.csproj", "{DEA26BD0-0D03-453E-BC45-93E83CAFD3E7}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = MavenThought.Commons.Testing.vsmdi
@@ -61,6 +65,14 @@ Global
 		{619C7141-4E52-4C25-8AF6-0C9109767C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{619C7141-4E52-4C25-8AF6-0C9109767C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{619C7141-4E52-4C25-8AF6-0C9109767C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{735A6EB5-C667-48E9-8142-8ACED26EBF5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{735A6EB5-C667-48E9-8142-8ACED26EBF5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{735A6EB5-C667-48E9-8142-8ACED26EBF5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{735A6EB5-C667-48E9-8142-8ACED26EBF5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEA26BD0-0D03-453E-BC45-93E83CAFD3E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEA26BD0-0D03-453E-BC45-93E83CAFD3E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEA26BD0-0D03-453E-BC45-93E83CAFD3E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEA26BD0-0D03-453E-BC45-93E83CAFD3E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,5 +82,6 @@ Global
 		{3F3FFD58-C16D-451E-8F70-5BC2FA10E4BB} = {1AED2709-E3F1-43D7-9089-EF8AFEA56C4A}
 		{CA9984DE-A436-4302-899B-8435F9658AEC} = {1AED2709-E3F1-43D7-9089-EF8AFEA56C4A}
 		{619C7141-4E52-4C25-8AF6-0C9109767C2B} = {1AED2709-E3F1-43D7-9089-EF8AFEA56C4A}
+		{735A6EB5-C667-48E9-8142-8ACED26EBF5F} = {1AED2709-E3F1-43D7-9089-EF8AFEA56C4A}
 	EndGlobalSection
 EndGlobal
