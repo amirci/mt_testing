@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace MavenThought.Commons.Testing
 {
@@ -24,11 +24,9 @@ namespace MavenThought.Commons.Testing
         /// <summary>
         /// Create the TSUT before each test
         /// </summary>
-        [SetUp]
-        public override void SetUp()
+        // xunit: setup is implied via the c'tor [SetUp]
+        public BaseTestWithSut() : base()
         {
-            base.SetUp();
-
             this.BeforeCreateSut();
 
             this.Sut = this.CreateSut();

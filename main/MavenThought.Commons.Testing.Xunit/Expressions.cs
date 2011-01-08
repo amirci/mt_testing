@@ -1,5 +1,6 @@
 using System;
 using System.Linq.Expressions;
+using Xunit;
 
 namespace MavenThought.Commons.Testing
 {
@@ -16,7 +17,7 @@ namespace MavenThought.Commons.Testing
             var memberExpr = property.Body as MemberExpression;
             var methodExpr = property.Body as MethodCallExpression;
 
-            NUnit.Framework.Assert.IsTrue(memberExpr != null || methodExpr != null);
+            Assert.True(memberExpr != null || methodExpr != null);
 
             return memberExpr == null ? methodExpr.Method.Name : memberExpr.Member.Name;
         }
@@ -33,7 +34,7 @@ namespace MavenThought.Commons.Testing
             var memberExpr = property.Body as MemberExpression;
             var methodExpr = property.Body as MethodCallExpression;
             
-            NUnit.Framework.Assert.IsTrue(memberExpr != null || methodExpr != null);
+            Assert.True(memberExpr != null || methodExpr != null);
 
             return memberExpr == null ? methodExpr.Method.Name : memberExpr.Member.Name;
         }

@@ -1,4 +1,4 @@
-using NUnit.Framework;
+using Xunit;
 using SharpTestsEx;
 
 namespace MavenThought.Commons.Testing.NUnit.Tests.SpecWithNoContract
@@ -17,7 +17,7 @@ namespace MavenThought.Commons.Testing.NUnit.Tests.SpecWithNoContract
         /// <summary>
         /// Checks that the addition works
         /// </summary>
-        [Test]
+        [Fact]
         public void Should_add_both_numbers()
         {
             this._actual.Should().Be(5 + 8);

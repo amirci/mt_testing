@@ -1,11 +1,11 @@
-using NUnit.Framework;
+using System;
 
 namespace MavenThought.Commons.Testing
 {
     /// <summary>
     /// Attribute to identify specifications
     /// </summary>
-    public class SpecificationAttribute : TestFixtureAttribute
+    public class SpecificationAttribute : Attribute
     {
     }
 }

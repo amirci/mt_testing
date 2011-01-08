@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using Microsoft.Practices.ServiceLocation;
 using Rhino.Mocks;
 using StructureMap.AutoMocking;
+using Xunit;
 
 namespace MavenThought.Commons.Testing
 {
@@ -84,7 +85,7 @@ namespace MavenThought.Commons.Testing
         protected void AssertDependencyInjection<TResult>(Func<TContract, TResult> func)
             where TResult : class
         {
-            NUnit.Framework.Assert.AreSame(Dep<TResult>(), func(this.Sut));
+            Assert.Same(Dep<TResult>(), func(this.Sut));
         }
 
         /// <summary>

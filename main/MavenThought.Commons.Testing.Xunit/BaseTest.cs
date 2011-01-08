@@ -1,5 +1,5 @@
 ﻿using System;
-using NUnit.Framework;
+using Xunit;
 using Rhino.Mocks;
 
 namespace MavenThought.Commons.Testing
@@ -7,7 +7,7 @@ namespace MavenThought.Commons.Testing
     /// <summary>
     /// Base test with mocking
     /// </summary>
-    public abstract class BaseTest
+    public abstract class BaseTest : IDisposable
     {
         /// <summary>
         /// Mocks an object of type U
@@ -79,7 +79,7 @@ namespace MavenThought.Commons.Testing
         /// <summary>
         /// Setup before all tests
         /// </summary>
-        [TestFixtureSetUp]
+        [Obsolete("Use IFixture<T> instead: http://xunit.codeplex.com/wikipage?title=Comparisons&referringTitle=HowToUse#note3", true)]
         public void FixtureSetUp()
         {
             this.BeforeAllTests();
@@ -88,8 +88,7 @@ namespace MavenThought.Commons.Testing
         /// <summary>
         /// Create the TSUT before each test
         /// </summary>
-        [SetUp]
-        public virtual void SetUp()
+        public BaseTest()
         {
             this.BeforeEachTest();
         }
@@ -97,8 +96,7 @@ namespace MavenThought.Commons.Testing
         /// <summary>
         /// Clean after each test
         /// </summary>
-        [TearDown]
-        public void TearDown()
+        public virtual void Dispose()
         {
             this.AfterEachTest();
         }
@@ -106,7 +104,7 @@ namespace MavenThought.Commons.Testing
         /// <summary>
         /// Clean up after all tests run
         /// </summary>
-        [TestFixtureTearDown]
+        [Obsolete("Use IFixture<T> instead: http://xunit.codeplex.com/wikipage?title=Comparisons&referringTitle=HowToUse#note3", true)]
         public void FixtureTearDown()
         {
             this.AfterAllTests();

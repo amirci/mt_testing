@@ -1,4 +1,5 @@
 ﻿using System;
+using Xunit;
 
 namespace MavenThought.Commons.Testing
 {
@@ -138,7 +139,7 @@ namespace MavenThought.Commons.Testing
         /// <typeparam name="T">Type of the exception</typeparam>
         protected void AssertExceptionThrown<T>() where T : Exception
         {
-            NUnit.Framework.Assert.IsInstanceOf(typeof(T), this.ExceptionThrown);    
+            Assert.IsAssignableFrom<T>(this.ExceptionThrown);
         }
 
         /// <summary>

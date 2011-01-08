@@ -1,17 +1,16 @@
-using NUnit.Framework;
+using Xunit;
 
 namespace MavenThought.Commons.Testing
 {
     /// <summary>
-    /// Test class to use the MbUnit attributes
+    /// Test class to use the xUnit.NET attributes
     /// </summary>
-    [TestFixture]
     public class DummyTest
     {
         /// <summary>
         /// Empty test to identify the library
         /// </summary>
-        [Test]
+        [Fact]
         public void Dummy()
         {            
         }

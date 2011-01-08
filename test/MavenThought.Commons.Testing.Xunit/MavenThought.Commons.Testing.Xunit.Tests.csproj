@@ -54,9 +54,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\lib\nunit-2.5.7.10213.20100801\net-2.0\framework\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
       <HintPath>..\..\lib\rhino.mocks-3.6.0.0\Rhino.Mocks.dll</HintPath>
     </Reference>
@@ -78,11 +75,30 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="xunit">
+      <HintPath>..\..\lib\xunitnet-1.6.0\xunit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SpecWithNoContract\CalculatorSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecWithNoContract\When_calculator_adds_two_numbers.cs" />
+    <Compile Include="With Contract\SimpleMediaLibrarySpecification.cs" />
+    <Compile Include="With Contract\When_media_library_adds_a_movie.cs">
+      <DependentUpon>SimpleMediaLibrarySpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="With Contract\When_media_library_clears_contents.cs">
+      <DependentUpon>SimpleMediaLibrarySpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="With Contract\When_media_library_finds_the_poster.cs">
+      <DependentUpon>SimpleMediaLibrarySpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="With Contract\When_media_library_imports_movies.cs">
+      <DependentUpon>SimpleMediaLibrarySpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="With Contract\When_media_library_lists_non_violent_movies.cs">
+      <DependentUpon>SimpleMediaLibrarySpecification.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
