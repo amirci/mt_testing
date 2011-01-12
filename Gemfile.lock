@@ -7,7 +7,7 @@ GEM
     commonservicelocator (1.0.0.0)
     gallio (3.2.601)
     git (1.2.5)
-    jeweler (1.5.1)
+    jeweler (1.5.2)
       bundler (~> 1.0.0)
       git (>= 1.2.5)
       rake
