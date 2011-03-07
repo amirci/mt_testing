@@ -12,6 +12,7 @@ namespace MavenThought.Commons.Testing.Tests
     public class When_media_library_adds_a_movie : SimpleMovieLibrarySpecification
     {
         private IMovie _movie;
+
         private EventHandler<MediaLibraryArgs> _handler;
 
         /// <summary>

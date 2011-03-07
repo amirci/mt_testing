@@ -1,7 +1,8 @@
+using MavenThought.Commons.Testing.NUnit.Tests.SpecWithNoContract;
 using Xunit;
 using SharpTestsEx;
 
-namespace MavenThought.Commons.Testing.NUnit.Tests.SpecWithNoContract
+namespace MavenThought.Commons.Testing.Xunit.Tests.SpecWithNoContract
 {
     /// <summary>
     /// Specification when adding two numbers

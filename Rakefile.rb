@@ -1,10 +1,9 @@
 require 'rubygems'    
-#require 'bundler'
 
-#require 'bundler/setup' # does not work
 puts "Chequing bundled dependencies, please wait...."
 
 system "bundle install --system --quiet"
+Gem.clear_paths
 
 require 'albacore'
 require 'git'
@@ -29,7 +28,7 @@ desc 'Default build'
 task :default => ["build:all"]
 
 desc 'Setup requirements to build and deploy'
-task :setup => ["setup:dep:local"]
+task :setup => ["setup:dep"]
 
 desc "Updates build version, generate zip, merged version and the gem in #{deploy_folder}"
 task :deploy => ["deploy:all"]
@@ -38,18 +37,16 @@ desc "Run all tests"
 task :test => ["test:all"]
 
 namespace :setup do
-	namespace :dep do
-		Noodle::Rake::NoodleTask.new :local do |n|
-			n.groups << :runtime
-			n.groups << :dev
-		end
+	Noodle::Rake::NoodleTask.new :dep do |n|
+		n.groups << :runtime
+		n.groups << :dev
 	end
 end
 
 namespace :build do
 
 	desc "Build the project"
-	msbuild :all, :config do |msb, args|
+	msbuild :all, [:config] => [:setup] do |msb, args|
 		msb.properties :configuration => args[:config] || :Debug
 		msb.targets :Build
 		msb.solution = solution_file
