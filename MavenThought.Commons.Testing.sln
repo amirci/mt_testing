@@ -15,6 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenThought.Commons.Testin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4AB0C6C9-45D0-4701-A1BB-F0E476E4F49F}"
 	ProjectSection(SolutionItems) = preProject
+		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
 		Local.testsettings = Local.testsettings
 		MavenThought.Commons.Testing.vsmdi = MavenThought.Commons.Testing.vsmdi
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings

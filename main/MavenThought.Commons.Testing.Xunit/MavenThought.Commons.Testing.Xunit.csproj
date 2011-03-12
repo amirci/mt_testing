@@ -85,6 +85,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="AutoMockBaseTest.cs" />
     <Compile Include="AutoMockBaseTestWithNoContract.cs" />
     <Compile Include="AutoMockSpecification.cs" />

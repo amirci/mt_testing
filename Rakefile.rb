@@ -7,7 +7,6 @@ Gem.clear_paths
 
 require 'albacore'
 require 'git'
-require 'noodle'
 require 'rake/clean'
 
 include FileUtils
@@ -19,10 +18,11 @@ commit = Git.open(".").log.first.sha[0..10] rescue 'na'
 version = IO.readlines('VERSION')[0] rescue "0.0.0.0"
 deploy_folder = "c:/temp/build/#{project_name}.#{version}_#{commit}"
 merged_folder = "#{deploy_folder}/merged"
+nuget_package = "maventhought.testing.#{version}"
 
-CLEAN.include("main/**/bin", "main/**/obj", "test/**/obj", "test/**/bin")
+CLEAN.include("main/**/bin", "main/**/obj", "*.xml", "*.gemspec", "*.vsmdi", "test/**/obj", "test/**/bin", "*.testsettings")
 
-CLOBBER.include("**/_*", "**/.svn", "lib/*", "**/*.user", "**/*.cache", "**/*.suo")
+CLOBBER.include("**/_*", "**/.svn", "Packages/*", "**/*.user", "**/*.cache", "**/*.suo")
 
 desc 'Default build'
 task :default => ["build:all"]
@@ -70,45 +70,25 @@ end
 
 namespace :deploy do
 
-	task :all  => [:update_version] do
-		rm_rf(deploy_folder)
-		Dir.mkdir(deploy_folder) unless File.directory? deploy_folder
-		Rake::Task["build:all"].invoke(:Release)
-		Rake::Task["deploy:package"].invoke
-		puts "Please look at #{deploy_folder} for deployed assets"
-	end 
+	desc "Creates zip files for all the libraries" 
+	task :zip_all => ["util:build_release", :zip_task] 
 	
-	task :update_version do 
-		files = FileList["main/**/Properties/AssemblyInfo.cs"]
-		files.each do |file|
-			Rake::Task["deploy:assemblyinfo"].invoke(file) 
-			Rake::Task["deploy:assemblyinfo"].reenable 
-		end
-	end
-	
-	assemblyinfo :assemblyinfo, :file do |asm, args|
-		asm.version = version
-		asm.company_name = "MavenThought Inc."
-		asm.product_name = "MavenThought Testing Framework"
-		asm.title = "MavenThought Testing (sha #{commit})"
-		asm.description = "Framework to provide base classes to test enforcing Given, When, Then and using automocking"
-		asm.copyright = "MavenThought Inc. 2006 - #{DateTime.now.year}"
-		asm.output_file = args[:file]
-	end	
-		
-	task :package do
-		[project_name, "#{project_name}.NUnit"].each do | proj |
-			puts "Zip contents for #{proj}"
-			Rake::Task["deploy:zip"].invoke(proj)
-			Rake::Task["deploy:zip"].reenable
-		end
-	end
-		
-	zip :zip, :zip_project do |zip, args|
-		zip.directories_to_zip "main/#{args[:zip_project]}/bin/release"
-		zip.output_file =  "#{args[:zip_project]}.#{version}_#{commit}.zip"
+	zip :zip_file, :zip_project do |zip, args|
+		zip.directories_to_zip "main/#{args.zip_project}/bin/release"
+		zip.output_file =  "#{args.zip_project}.#{version}_#{commit}.zip"
 		zip.output_path = deploy_folder
 	end
+
+	["", ".NUnit", ".xUnit", ".MsTest"].each do | proj |
+		zip_task = Rake::Task["deploy:zip_file"]
+		task :zip_it do
+			zip_file = "#{project_name}proj"
+			puts "Zip contents for #{zip_file}"
+			zip_task.invoke(zip_file)
+			zip_task.reenable
+		end
+	end
+
 	
 	task :merge do
 		puts "Merging #{project_name} assemblies located in bin/release into one"
@@ -120,27 +100,59 @@ namespace :deploy do
 		rm("#{project_name}.pdb")
 	end
 
+	desc "Publish nuspec package"
+	task :publish  => ["util:build_release"] do
+		Rake::Task["util:clean_folder"].invoke("nuget")
+		mkdir "nuget/lib"
+		FileList["main/**/bin/release/MavenT*.dll"].each do |ass|
+			cp ass, "nuget/lib"
+		end
+		Rake::Task["deploy:package"].invoke
+		sh "nuget push nuget/#{nuget_package}.nupkg"
+	end 
+
+	nuspec :spec  do |nuspec|
+	   nuspec.id = "maventhought.testing"
+	   nuspec.version = version
+	   nuspec.authors = "Amir Barylko"
+	   nuspec.owners = "Amir Barylko"
+	   nuspec.description = "Framework to provide base classes to test enforcing Given, When, Then and using automocking"
+	   nuspec.summary = "Framework to provide base classes to test enforcing Given, When, Then and using automocking"
+	   nuspec.language = "en-US"
+	   nuspec.licenseUrl = "https://github.com/amirci/mt_testing/LICENSE"
+	   nuspec.projectUrl = "https://github.com/amirci/mt_testing"
+	   nuspec.working_directory = "nuget"
+	   nuspec.output_file = "#{nuget_package}.nuspec"
+	   nuspec.tags = "testing automocking givenwhenthen"
+	   nuspec.dependency "CommonServiceLocator", "1.0"
+	   nuspec.dependency "RhinoMocks", "3.6"
+	   nuspec.dependency "structuremap.automocking", "2.6.2"
+	   nuspec.dependency "nunit", "2.5.9"
+	   nuspec.dependency "xunit", "1.7.0"
+	   nuspec.dependency "gallio", "3.2.601"
+	end
+	
+	nugetpack :package => :spec do |p|
+	   p.nuspec = "nuget/#{nuget_package}.nuspec"
+	   p.output = "nuget"
+	end
 end
 
-namespace :jeweler do
-	require 'jeweler'  	
-
-	desc 'Build the release version and copy the files to lib'
-	task :setup do
-		Rake::Task["build:all"].invoke(:Release)
-		files = Dir.glob("main/**/bin/release/Maven*.dll")
-		copy files, "lib"
+namespace :util do
+	task :clean_folder, :folder do |t, args|
+		rm_rf(args.folder)
+		Dir.mkdir(args.folder) unless File.directory? args.folder
 	end
+	
+	assemblyinfo :update_version, :file do |asm, args|
+		asm.version = version
+		asm.company_name = "MavenThought Inc."
+		asm.product_name = "MavenThought Testing (sha #{commit})"
+		asm.copyright = "MavenThought Inc. 2006 - #{DateTime.now.year}"
+		asm.output_file = "GlobalAssemblyInfo.cs"
+	end	
 
-	Jeweler::Tasks.new do |gs|
-		gs.name = "maventhought.testing"
-		gs.summary = "Testing Framework with automocking dependencies"
-		gs.description = "Base classes to use for testing (based on MbUnit or Nunit) that enforce Given, When, Then style with auto mocking facilities"
-		gs.email = "amir@barylko.com"
-		gs.homepage = "http://orthocoders.com"
-		gs.authors = ["Amir Barylko"]
-		gs.has_rdoc = false  
-		gs.rubyforge_project = 'maventhought.testing'  
-		gs.files = Dir.glob("lib/Maven*.dll")
+	task :build_release => [:update_version] do 
+		Rake::Task["build:all"].invoke(:Release)
 	end
 end
