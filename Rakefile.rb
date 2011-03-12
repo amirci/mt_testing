@@ -37,9 +37,11 @@ desc "Run all tests"
 task :test => ["test:all"]
 
 namespace :setup do
-	Noodle::Rake::NoodleTask.new :dep do |n|
-		n.groups << :runtime
-		n.groups << :dev
+	desc "Setup dependencies for nuget packages"
+	task :dep do
+		FileList["**/packages.config"].each do |file|
+			sh "nuget install #{file} /OutputDirectory Packages"
+		end
 	end
 end
 

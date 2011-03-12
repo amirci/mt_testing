@@ -3,21 +3,12 @@ source :rubygems
 group :setup do
 	gem 'albacore'
 	gem 'git'
-	gem 'noodle'
-	gem 'jeweler'
 end
 
 group :dev do
-    gem 'sharptestsex'
 end
 
 group :runtime do
-	gem 'commonservicelocator'
-	gem 'gallio', '~> 3.2'
-	gem 'rhino.mocks',  '~> 3.6'
-	gem 'structuremap.automocking', '~> 2.6.1.1'
-	gem 'nunit'
-	gem 'xunitnet'
 end
 
 group :tools do

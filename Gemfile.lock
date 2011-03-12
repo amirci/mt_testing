@@ -1,39 +1,14 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    albacore (0.2.2)
-      rake (>= 0.8.7)
-      rubyzip (>= 0.9.4)
-    commonservicelocator (1.0.0.0)
-    gallio (3.2.601)
+    albacore (0.2.4)
+      rubyzip (= 0.9.4)
     git (1.2.5)
-    jeweler (1.5.2)
-      bundler (~> 1.0.0)
-      git (>= 1.2.5)
-      rake
-    noodle (0.3.0)
-      bundler (>= 1.0.0.rc.3)
-      rake
-    nunit (2.5.7.10213.20100801)
-    rake (0.8.7)
-    rhino.mocks (3.6.0.0)
     rubyzip (0.9.4)
-    sharptestsex (1.0.0.0.20100911)
-    structuremap.automocking (2.6.1.1)
-    xunitnet (1.6.0)
 
 PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
   albacore
-  commonservicelocator
-  gallio (~> 3.2)
   git
-  jeweler
-  noodle
-  nunit
-  rhino.mocks (~> 3.6)
-  sharptestsex
-  structuremap.automocking (~> 2.6.1.1)
-  xunitnet
