@@ -80,7 +80,7 @@ namespace MavenThought.Commons.Testing
         /// <summary>
         /// Setup before all tests
         /// </summary>
-        [TestInitialize]
+        [ClassInitialize]
         public void FixtureSetUp()
         {
             this.BeforeAllTests();
@@ -89,7 +89,7 @@ namespace MavenThought.Commons.Testing
         /// <summary>
         /// Create the TSUT before each test
         /// </summary>
-        [TestMethod]
+        [TestInitialize]
         public virtual void SetUp()
         {
             this.BeforeEachTest();

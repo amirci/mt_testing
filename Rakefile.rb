@@ -18,7 +18,6 @@ commit = Git.open(".").log.first.sha[0..10] rescue 'na'
 version = IO.readlines('VERSION')[0] rescue "0.0.0.0"
 deploy_folder = "c:/temp/build/#{project_name}.#{version}_#{commit}"
 merged_folder = "#{deploy_folder}/merged"
-nuget_package = "maventhought.testing.#{version}"
 
 CLEAN.include("main/**/bin", "main/**/obj", "*.xml", "*.gemspec", "*.vsmdi", "test/**/obj", "test/**/bin", "*.testsettings")
 
@@ -102,17 +101,23 @@ namespace :deploy do
 
 	desc "Publish nuspec package"
 	task :publish  => ["util:build_release"] do
-		Rake::Task["util:clean_folder"].invoke("nuget")
-		mkdir "nuget/lib"
-		FileList["main/**/bin/release/MavenT*.dll"].each do |ass|
-			cp ass, "nuget/lib"
+		nuget_lib = "nuget/lib"
+		clean_folder = Rake::Task["util:clean_folder"]
+		package = Rake::Task["deploy:package"]
+		["", "nunit", "mstest", "xunit"].each do |ext|
+			clean_folder.invoke("nuget")
+			mkdir nuget_lib
+			cp FileList["main/**/bin/release/MavenT*#{ext}.dll"][0], nuget_lib
+			nuget_package = "maventhought.testing#{ext.empty? ? "" : "." + ext}"
+			package.invoke(nuget_package)
+			clean_folder.reenable
+			package.reenable
+			sh "nuget push nuget/#{nuget_package}.#{version}.nupkg" 
 		end
-		Rake::Task["deploy:package"].invoke
-		sh "nuget push nuget/#{nuget_package}.nupkg"
 	end 
 
-	nuspec :spec  do |nuspec|
-	   nuspec.id = "maventhought.testing"
+	nuspec :spec, :package_id  do |nuspec, args|
+	   nuspec.id = args.package_id
 	   nuspec.version = version
 	   nuspec.authors = "Amir Barylko"
 	   nuspec.owners = "Amir Barylko"
@@ -122,19 +127,22 @@ namespace :deploy do
 	   nuspec.licenseUrl = "https://github.com/amirci/mt_testing/LICENSE"
 	   nuspec.projectUrl = "https://github.com/amirci/mt_testing"
 	   nuspec.working_directory = "nuget"
-	   nuspec.output_file = "#{nuget_package}.nuspec"
+	   nuspec.output_file = "#{args.package_id}.#{version}.nuspec"
 	   nuspec.tags = "testing automocking givenwhenthen"
 	   nuspec.dependency "CommonServiceLocator", "1.0"
 	   nuspec.dependency "RhinoMocks", "3.6"
 	   nuspec.dependency "structuremap.automocking", "2.6.2"
-	   nuspec.dependency "nunit", "2.5.9"
-	   nuspec.dependency "xunit", "1.7.0"
-	   nuspec.dependency "gallio", "3.2.601"
+	   nuspec.dependency "nunit", "2.5.9" if args.package_id.include? "nunit"
+	   nuspec.dependency "xunit", "1.7.0" if args.package_id.include? "xunit"
+	   nuspec.dependency "gallio", "3.2.601" unless args.package_id =~ /nunit|xunit|mstest/
 	end
 	
-	nugetpack :package => :spec do |p|
-	   p.nuspec = "nuget/#{nuget_package}.nuspec"
-	   p.output = "nuget"
+	nugetpack :package, :package_id do |p, args|
+		spec = Rake::Task["deploy:spec"]
+		spec.invoke(args.package_id)
+		spec.reenable
+		p.nuspec = "nuget/#{args.package_id}.#{version}.nuspec"
+		p.output = "nuget"
 	end
 end
 

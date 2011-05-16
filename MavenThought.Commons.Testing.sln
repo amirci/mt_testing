@@ -13,14 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenThought.Commons.Testin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenThought.Commons.Testing.MsTest", "main\MavenThought.Commons.Testing.MsTest\MavenThought.Commons.Testing.MsTest.csproj", "{4ECD3600-F85F-4AA0-98EB-E40C42C30C7C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4AB0C6C9-45D0-4701-A1BB-F0E476E4F49F}"
-	ProjectSection(SolutionItems) = preProject
-		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
-		Local.testsettings = Local.testsettings
-		MavenThought.Commons.Testing.vsmdi = MavenThought.Commons.Testing.vsmdi
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenThought.Commons.Testing.Example", "test\MavenThought.Commons.Testing.Example\MavenThought.Commons.Testing.Example.csproj", "{CA9984DE-A436-4302-899B-8435F9658AEC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MavenThought.Commons.Testing.MsTest.Tests", "test\MavenThought.Commons.Testing.MsTest.Tests\MavenThought.Commons.Testing.MsTest.Tests.csproj", "{619C7141-4E52-4C25-8AF6-0C9109767C2B}"

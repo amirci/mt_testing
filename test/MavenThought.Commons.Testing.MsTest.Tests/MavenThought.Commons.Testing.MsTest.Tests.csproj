@@ -57,6 +57,13 @@
     <Compile Include="No Contract\When_calculator_adds_two_numbers.cs">
       <DependentUpon>CalculatorSpecificaiton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Static Classes\Palindrome\PalidromeCheckerSpecification.cs" />
+    <Compile Include="Static Classes\Palindrome\When_palindrome_checker_checks_a_non_palindrome_phrase.cs">
+      <DependentUpon>PalidromeCheckerSpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Static Classes\Palindrome\When_palindrome_checker_checks_a_palindrome_phrase.cs">
+      <DependentUpon>PalidromeCheckerSpecification.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\main\MavenThought.Commons.Testing.MsTest\MavenThought.Commons.Testing.MsTest.csproj">
@@ -69,7 +76,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Static Classes\" />
     <Folder Include="With Contract\" />
   </ItemGroup>
   <ItemGroup>

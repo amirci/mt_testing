@@ -14,6 +14,7 @@ namespace MavenThought.Commons.Testing
     ///   <item>AndThenAfterEverything</item>
     /// </list>
     /// </remarks>
+    [TestClass]
     public abstract class BaseSpecification
         : BaseTest
     {
