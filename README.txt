@@ -7,3 +7,8 @@ In order to compile:
 * Install nuget and add it to the path
 * Run: rake (should build)
 * Run: rake test (should run all the tests)
+
+Log:
+
+0.3.4
+Fixed issue with MsTest, was using the wrong setup attribute
