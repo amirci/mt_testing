@@ -88,7 +88,7 @@ namespace MavenThought.Commons.Testing
         /// <summary>
         /// Create the TSUT before each test
         /// </summary>
-        public BaseTest()
+        protected BaseTest()
         {
             this.BeforeEachTest();
         }

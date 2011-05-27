@@ -5,7 +5,7 @@ nuget
 Packages
 Reports
 TestResult.xml
-_*
+_Re*
 Upgrade*
 Output
 lib
@@ -14,3 +14,4 @@ lib
 pkg
 *.testsettings
 *.vsmdi
+*.docstat*
