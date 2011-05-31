@@ -132,7 +132,7 @@ namespace :deploy do
 	   nuspec.dependency "CommonServiceLocator", "1.0"
 	   nuspec.dependency "RhinoMocks", "3.6"
 	   nuspec.dependency "structuremap.automocking", "2.6.2"
-	   nuspec.dependency "nunit", "[2.5.9]" if args.package_id.include? "nunit"
+	   nuspec.dependency "nunit", "2.5.10" if args.package_id.include? "nunit"
 	   nuspec.dependency "xunit", "1.7.0" if args.package_id.include? "xunit"
 	   nuspec.dependency "gallio", "3.2.601" unless args.package_id =~ /nunit|xunit|mstest/
 	end
