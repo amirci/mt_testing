@@ -84,6 +84,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\MovieLibraryExtensionMethodSpecification.cs" />
+    <Compile Include="Extensions\When_movie_library_extension_non_violent_count_is_called.cs">
+      <DependentUpon>MovieLibraryExtensionMethodSpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\When_movie_library_extension_rated_violent_by_critic_is_called_with_no_violent_movies.cs">
+      <DependentUpon>MovieLibraryExtensionMethodSpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\When_movie_library_extension_rated_violent_by_critic_is_called_with_violent_movies.cs">
+      <DependentUpon>MovieLibraryExtensionMethodSpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\When_movie_library_total_count_is_requested.cs">
+      <DependentUpon>MovieLibraryExtensionMethodSpecification.cs</DependentUpon>
+    </Compile>
     <Compile Include="No Contract\CalculatorSpecification.cs" />
     <Compile Include="Static Classes\Palindrome\PalidromeCheckerSpecification.cs" />
     <Compile Include="Static Classes\Palindrome\When_palindrome_checker_checks_a_palindrome_phrase.cs">

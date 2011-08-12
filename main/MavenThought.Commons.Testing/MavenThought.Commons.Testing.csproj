@@ -112,6 +112,7 @@
     <Compile Include="BaseTestWithSut.cs" />
     <Compile Include="DummyTest.cs" />
     <Compile Include="Expressions.cs" />
+    <Compile Include="ExtensionMethodSpecification.cs" />
     <Compile Include="NotifyPropertyChangedExtensions.cs" />
     <Compile Include="ConstructorSpecificationAttribute.cs" />
     <Compile Include="ExceptionSpecificationAttribute.cs" />
