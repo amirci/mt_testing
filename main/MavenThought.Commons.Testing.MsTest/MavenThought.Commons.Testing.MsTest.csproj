@@ -82,6 +82,7 @@
     <Compile Include="ConstructorSpecificationAttribute.cs" />
     <Compile Include="ExceptionSpecificationAttribute.cs" />
     <Compile Include="Expressions.cs" />
+    <Compile Include="ExtensionMethodSpecification.cs" />
     <Compile Include="NotifyPropertyChangedExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
