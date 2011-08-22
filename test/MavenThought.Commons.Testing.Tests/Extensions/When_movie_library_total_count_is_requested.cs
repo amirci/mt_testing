@@ -1,5 +1,6 @@
 using System.Linq;
 using MavenThought.Commons.Testing.Example;
+using SharpTestsEx;
 
 namespace MavenThought.Commons.Testing.Tests.Extensions
 {
@@ -21,7 +22,7 @@ namespace MavenThought.Commons.Testing.Tests.Extensions
         [It]
         public void Should_return_a_total_count_of_the_movie_library_contents()
         {
-            Assert.AreEqual(Extended.Contents.Count(), _actual);
+            this.Extended.Contents.Count().Should().Be(_actual);
         }
 
         /// <summary>

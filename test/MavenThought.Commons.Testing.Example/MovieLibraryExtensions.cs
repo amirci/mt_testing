@@ -36,7 +36,7 @@ namespace MavenThought.Commons.Testing.Example
         /// <returns>All movies deemed Violent by the Critic</returns>
         public static IEnumerable<IMovie> MoviesRatedViolentByCritic(this IMovieLibrary movieLibrary, IMovieCritic critic)
         {
-            return movieLibrary.Contents.Where(critic.IsViolent).AsEnumerable();
+            return movieLibrary.Contents.Where(critic.IsViolent);
         }
     }
 }

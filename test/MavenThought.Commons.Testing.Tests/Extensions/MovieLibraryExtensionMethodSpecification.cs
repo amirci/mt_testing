@@ -12,11 +12,18 @@ namespace MavenThought.Commons.Testing.Tests.Extensions
         : ExtensionMethodSpecification<IMovieLibrary>
     {
         /// <summary>
+        /// Movie Critic
+        /// </summary>
+        protected IMovieCritic Critic { get; set; }
+
+        /// <summary>
         /// Setup Basic common needs for IMovieLibrary Extensions
         /// </summary>
         protected override void GivenThat()
         {
             base.GivenThat();
+
+            this.Critic = Mock<IMovieCritic>();
 
             var movies = new List<IMovie>();
             
@@ -25,7 +32,8 @@ namespace MavenThought.Commons.Testing.Tests.Extensions
                 movies.Add(Mock<IMovie>());
             }
 
-            Extended.Stub(ex => ex.Contents).Return(movies.AsEnumerable());
+            Extended.Stub(ex => ex.Contents).Return(movies);
+
             Extended.Stub(ex => ex.ListNonViolent()).Return(movies.Take(5));
         }
     }

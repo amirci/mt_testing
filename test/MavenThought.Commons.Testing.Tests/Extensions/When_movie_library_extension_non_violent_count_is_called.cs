@@ -1,5 +1,6 @@
 using System.Linq;
 using MavenThought.Commons.Testing.Example;
+using SharpTestsEx;
 
 namespace MavenThought.Commons.Testing.Tests.Extensions
 {
@@ -20,7 +21,7 @@ namespace MavenThought.Commons.Testing.Tests.Extensions
         [It]
         public void Should_return_expected_count()
         {
-            Assert.AreEqual(Extended.ListNonViolent().Count(), _actual);
+            this.Extended.ListNonViolent().Count().Should().Be(this._actual);
         }
 
         /// <summary>

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MavenThought.Commons.Testing.Example;
 using Rhino.Mocks;
+using SharpTestsEx;
 
 namespace MavenThought.Commons.Testing.Tests.Extensions
 {
@@ -16,11 +17,6 @@ namespace MavenThought.Commons.Testing.Tests.Extensions
         /// Actual Movies returned by SUT
         /// </summary>
         private IEnumerable<IMovie> _actual;
-        
-        /// <summary>
-        /// Movie Critic
-        /// </summary>
-        protected IMovieCritic Critic { get; set; }
 
         /// <summary>
         /// Should not find any violent movies
@@ -28,20 +24,8 @@ namespace MavenThought.Commons.Testing.Tests.Extensions
         [It]
         public void Should_return_no_movies()
         {
-            Assert.AreEqual(0, _actual.Count());
+            this._actual.Count().Should().Be(0);
         }
-
-        /// <summary>
-        /// Setup the Dependency on IMovieCritic
-        /// </summary>
-        protected override void GivenThat()
-        {
-            base.GivenThat();
-            Critic = Mock<IMovieCritic>();
-            Critic.Stub(mc => mc.IsViolent(Arg<IMovie>.Is.Anything))
-                .Return(false);
-        }
-
 
         /// <summary>
         /// Execute the SUT

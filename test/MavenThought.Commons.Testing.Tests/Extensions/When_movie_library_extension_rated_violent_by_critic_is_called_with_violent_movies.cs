@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using MavenThought.Commons.Testing.Example;
 using Rhino.Mocks;
+using SharpTestsEx;
 
 namespace MavenThought.Commons.Testing.Tests.Extensions
 {
@@ -17,17 +18,12 @@ namespace MavenThought.Commons.Testing.Tests.Extensions
         private IEnumerable<IMovie> _actual;
 
         /// <summary>
-        /// Movie Critic
-        /// </summary>
-        protected IMovieCritic Critic { get; set; }
-
-        /// <summary>
         /// Verifies that critic found all movies violent
         /// </summary>
         [It]
         public void Should_return_all_movies_as_violent()
         {
-            Assert.AreElementsSameIgnoringOrder(Extended.Contents, _actual);
+            this.Extended.Contents.Should().Have.SameValuesAs(this._actual);
         }
 
         /// <summary>
@@ -36,9 +32,10 @@ namespace MavenThought.Commons.Testing.Tests.Extensions
         protected override void GivenThat()
         {
             base.GivenThat();
-            Critic = Mock<IMovieCritic>();
-            Critic.Stub(mc => mc.IsViolent(Arg<IMovie>.Is.Anything))
-                .Return(true);
+            
+            this.Critic = Mock<IMovieCritic>();
+            
+            this.Critic.Stub(mc => mc.IsViolent(Arg<IMovie>.Is.Anything)).Return(true);
         }
 
         /// <summary>
@@ -46,7 +43,7 @@ namespace MavenThought.Commons.Testing.Tests.Extensions
         /// </summary>
         protected override void WhenIRun()
         {
-            _actual = Extended.MoviesRatedViolentByCritic(Critic);
+            this._actual = Extended.MoviesRatedViolentByCritic(this.Critic);
         }
     }
 }

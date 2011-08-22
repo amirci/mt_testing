@@ -1,6 +1,4 @@
-﻿using Rhino.Mocks;
-
-namespace MavenThought.Commons.Testing
+﻿namespace MavenThought.Commons.Testing
 {
     /// <summary>
     /// Specification for testing extension methods for a specific type.
@@ -31,7 +29,8 @@ namespace MavenThought.Commons.Testing
         protected override void GivenThat()
         {
             base.GivenThat();
-            Extended = CreateExtended();
+
+            this.Extended = CreateExtended();
         }
     }
 }
