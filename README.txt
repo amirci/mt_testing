@@ -11,8 +11,11 @@ In order to compile:
 
 Log:
 
+0.3.6
+- Merged pull request #2 from TheEvilDev/master
+
 0.3.5
-Updated dependency with nunit 
+- Updated dependency with nunit 
 
 0.3.4
-Fixed issue with MsTest, was using the wrong setup attribute
+- Fixed issue with MsTest, was using the wrong setup attribute
