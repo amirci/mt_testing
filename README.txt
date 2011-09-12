@@ -11,6 +11,10 @@ In order to compile:
 
 Log:
 
+0.3.7
+- Updated projects that didnt use nuget packages
+- Updated structuremap to 2.6.3
+
 0.3.6
 - Merged pull request #2 from TheEvilDev/master
 
