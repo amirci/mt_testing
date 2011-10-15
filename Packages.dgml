@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="MavenThought.Commons.Testing.Xunit" Label="MavenThought.Commons.Testing.Xunit" Category="Project" />
+    <Node Id="CommonServiceLocator 1.0" Label="CommonServiceLocator 1.0" Category="Package" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="structuremap 2.6.3" Label="structuremap 2.6.3" Category="Package" />
+    <Node Id="structuremap.automocking 2.6.3" Label="structuremap.automocking 2.6.3" Category="Package" />
+    <Node Id="xunit 1.8.0.1549" Label="xunit 1.8.0.1549" Category="Package" />
+    <Node Id="MavenThought.Commons.Testing.MsTest" Label="MavenThought.Commons.Testing.MsTest" Category="Project" />
+    <Node Id="CommonServiceLocator 1.0" Label="CommonServiceLocator 1.0" Category="Package" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="structuremap 2.6.3" Label="structuremap 2.6.3" Category="Package" />
+    <Node Id="structuremap.automocking 2.6.3" Label="structuremap.automocking 2.6.3" Category="Package" />
+    <Node Id="MavenThought.Commons.Testing.NUnit" Label="MavenThought.Commons.Testing.NUnit" Category="Project" />
+    <Node Id="CommonServiceLocator 1.0" Label="CommonServiceLocator 1.0" Category="Package" />
+    <Node Id="NUnit 2.5.10.11092" Label="NUnit 2.5.10.11092" Category="Package" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="structuremap 2.6.3" Label="structuremap 2.6.3" Category="Package" />
+    <Node Id="structuremap.automocking 2.6.3" Label="structuremap.automocking 2.6.3" Category="Package" />
+    <Node Id="Tests\MavenThought.Commons.Testing.Xunit.Tests" Label="MavenThought.Commons.Testing.Xunit.Tests" Category="Project" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="SharpTestsEx 1.1.1" Label="SharpTestsEx 1.1.1" Category="Package" />
+    <Node Id="xunit 1.8.0.1549" Label="xunit 1.8.0.1549" Category="Package" />
+    <Node Id="Tests\MavenThought.Commons.Testing.MsTest.Tests" Label="MavenThought.Commons.Testing.MsTest.Tests" Category="Project" />
+    <Node Id="SharpTestsEx 1.1.1" Label="SharpTestsEx 1.1.1" Category="Package" />
+    <Node Id="Tests\MavenThought.Commons.Testing.NUnit.Tests" Label="MavenThought.Commons.Testing.NUnit.Tests" Category="Project" />
+    <Node Id="NUnit 2.5.10.11092" Label="NUnit 2.5.10.11092" Category="Package" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="SharpTestsEx 1.1.1" Label="SharpTestsEx 1.1.1" Category="Package" />
+    <Node Id="Tests\MavenThought.Commons.Testing.Tests" Label="MavenThought.Commons.Testing.Tests" Category="Project" />
+    <Node Id="Gallio 3.3.1" Label="Gallio 3.3.1" Category="Package" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="SharpTestsEx 1.1.1" Label="SharpTestsEx 1.1.1" Category="Package" />
+    <Node Id="MavenThought.Commons.Testing" Label="MavenThought.Commons.Testing" Category="Project" />
+    <Node Id="CommonServiceLocator 1.0" Label="CommonServiceLocator 1.0" Category="Package" />
+    <Node Id="Gallio 3.3.1" Label="Gallio 3.3.1" Category="Package" />
+    <Node Id="RhinoMocks 3.6" Label="RhinoMocks 3.6" Category="Package" />
+    <Node Id="structuremap 2.6.3" Label="structuremap 2.6.3" Category="Package" />
+    <Node Id="structuremap.automocking 2.6.3" Label="structuremap.automocking 2.6.3" Category="Package" />
+  </Nodes>
+  <Links>
+    <Link Source="structuremap.automocking 2.6.3" Target="structuremap 2.6.3" Category="Package Dependency" />
+    <Link Source="MavenThought.Commons.Testing.Xunit" Target="CommonServiceLocator 1.0" Category="Installed Package" />
+    <Link Source="MavenThought.Commons.Testing.Xunit" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="MavenThought.Commons.Testing.Xunit" Target="structuremap.automocking 2.6.3" Category="Installed Package" />
+    <Link Source="MavenThought.Commons.Testing.Xunit" Target="xunit 1.8.0.1549" Category="Installed Package" />
+    <Link Source="structuremap.automocking 2.6.3" Target="structuremap 2.6.3" Category="Package Dependency" />
+    <Link Source="MavenThought.Commons.Testing.MsTest" Target="CommonServiceLocator 1.0" Category="Installed Package" />
+    <Link Source="MavenThought.Commons.Testing.MsTest" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="MavenThought.Commons.Testing.MsTest" Target="structuremap.automocking 2.6.3" Category="Installed Package" />
+    <Link Source="structuremap.automocking 2.6.3" Target="structuremap 2.6.3" Category="Package Dependency" />
+    <Link Source="MavenThought.Commons.Testing.NUnit" Target="CommonServiceLocator 1.0" Category="Installed Package" />
+    <Link Source="MavenThought.Commons.Testing.NUnit" Target="NUnit 2.5.10.11092" Category="Installed Package" />
+    <Link Source="MavenThought.Commons.Testing.NUnit" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="MavenThought.Commons.Testing.NUnit" Target="structuremap.automocking 2.6.3" Category="Installed Package" />
+    <Link Source="Tests\MavenThought.Commons.Testing.Xunit.Tests" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="Tests\MavenThought.Commons.Testing.Xunit.Tests" Target="SharpTestsEx 1.1.1" Category="Installed Package" />
+    <Link Source="Tests\MavenThought.Commons.Testing.Xunit.Tests" Target="xunit 1.8.0.1549" Category="Installed Package" />
+    <Link Source="Tests\MavenThought.Commons.Testing.MsTest.Tests" Target="SharpTestsEx 1.1.1" Category="Installed Package" />
+    <Link Source="Tests\MavenThought.Commons.Testing.NUnit.Tests" Target="NUnit 2.5.10.11092" Category="Installed Package" />
+    <Link Source="Tests\MavenThought.Commons.Testing.NUnit.Tests" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="Tests\MavenThought.Commons.Testing.NUnit.Tests" Target="SharpTestsEx 1.1.1" Category="Installed Package" />
+    <Link Source="Tests\MavenThought.Commons.Testing.Tests" Target="Gallio 3.3.1" Category="Installed Package" />
+    <Link Source="Tests\MavenThought.Commons.Testing.Tests" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="Tests\MavenThought.Commons.Testing.Tests" Target="SharpTestsEx 1.1.1" Category="Installed Package" />
+    <Link Source="structuremap.automocking 2.6.3" Target="structuremap 2.6.3" Category="Package Dependency" />
+    <Link Source="MavenThought.Commons.Testing" Target="CommonServiceLocator 1.0" Category="Installed Package" />
+    <Link Source="MavenThought.Commons.Testing" Target="Gallio 3.3.1" Category="Installed Package" />
+    <Link Source="MavenThought.Commons.Testing" Target="RhinoMocks 3.6" Category="Installed Package" />
+    <Link Source="MavenThought.Commons.Testing" Target="structuremap.automocking 2.6.3" Category="Installed Package" />
+  </Links>
+  <Categories>
+    <Category Id="Project" />
+    <Category Id="Package" />
+  </Categories>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Project" ValueLabel="True">
+      <Condition Expression="HasCategory('Project')" />
+      <Setter Property="Background" Value="Blue" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Package Dependency" ValueLabel="True">
+      <Condition Expression="HasCategory('Package Dependency')" />
+      <Setter Property="Background" Value="Yellow" />
+    </Style>
+  </Styles>
+</DirectedGraph>

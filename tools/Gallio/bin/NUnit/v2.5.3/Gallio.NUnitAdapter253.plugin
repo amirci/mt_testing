@@ -4,7 +4,7 @@
         xmlns="http://www.gallio.org/">
   <traits>
     <name>NUnit v2.5.3 Adapter Plugin</name>
-    <version>3.2.0.0</version>
+    <version>3.3.0.0</version>
     <description>Provides support for running NUnit v2.5.3 tests.</description>
     <icon>plugin://Gallio.NUnitAdapter253/Resources/NUnit.ico</icon>
   </traits>
@@ -30,7 +30,7 @@
   </files>
 
   <assemblies>
-    <assembly fullName="Gallio.NUnitAdapter253, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null"
+    <assembly fullName="Gallio.NUnitAdapter253, Version=3.3.0.0, Culture=neutral, PublicKeyToken=null"
               codeBase="Gallio.NUnitAdapter253.dll"
               qualifyPartialName="true" />
 

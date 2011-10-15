@@ -11,6 +11,10 @@ In order to compile:
 
 Log:
 
+0.3.8
+- Updated gallio to 3.3.1
+- Update xunit to 1.8.0
+
 0.3.7
 - Updated projects that didnt use nuget packages
 - Updated structuremap to 2.6.3

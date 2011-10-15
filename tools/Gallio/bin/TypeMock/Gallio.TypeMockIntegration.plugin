@@ -4,7 +4,7 @@
         xmlns="http://www.gallio.org/">
   <traits>
     <name>TypeMock Integration Plugin</name>
-    <version>3.2.0.0</version>
+    <version>3.3.0.0</version>
     <description>Provides support for running tests with TypeMock.</description>
 	<icon>plugin://Gallio.TypeMockIntegration/Resources/Typemock.ico</icon>
   </traits>
@@ -21,11 +21,11 @@
   </files>
 
   <assemblies>
-    <assembly fullName="Gallio.TypeMockIntegration, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null"
+    <assembly fullName="Gallio.TypeMockIntegration, Version=3.3.0.0, Culture=neutral, PublicKeyToken=null"
               codeBase="Gallio.TypeMockIntegration.dll"
               qualifyPartialName="true" />
 
-    <assembly fullName="TypeMock.Integration, Version=5.1.2.0, Culture=neutral, PublicKeyToken=null"
+    <assembly fullName="TypeMock.Integration, Version=6.0.10.0, Culture=neutral, PublicKeyToken=3dae460033b8d8e2"
               codeBase="TypeMock.Integration.dll" />
   </assemblies>
 
