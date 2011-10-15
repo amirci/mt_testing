@@ -101,12 +101,12 @@ namespace :deploy do
 
 	desc "Publish nuspec package"
 	task :publish  => ["util:build_release"] do
-		nuget_lib = "nuget/lib"
+		nuget_lib = "nuget/lib/NET35"
 		clean_folder = Rake::Task["util:clean_folder"]
 		package = Rake::Task["deploy:package"]
 		["", "nunit", "mstest", "xunit"].each do |ext|
 			clean_folder.invoke("nuget")
-			mkdir nuget_lib
+			mkdir_p nuget_lib
 			cp FileList["main/**/bin/release/MavenT*#{ext}.dll"][0], nuget_lib
 			nuget_package = "maventhought.testing#{ext.empty? ? "" : "." + ext}"
 			package.invoke(nuget_package)
