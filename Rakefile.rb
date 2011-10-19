@@ -115,6 +115,14 @@ namespace :deploy do
 			sh "nuget push nuget/#{nuget_package}.#{version}.nupkg" 
 		end
 	end 
+	
+	desc 'Deletes the last published packages'
+	task :unpublish do
+		["", "nunit", "mstest", "xunit"].each do |ext|
+			nuget_package = "maventhought.testing#{ext.empty? ? "" : "." + ext}"
+			sh "nuget delete #{nuget_package} #{version}"
+		end
+	end
 
 	nuspec :spec, :package_id  do |nuspec, args|
 	   nuspec.id = args.package_id
@@ -133,8 +141,8 @@ namespace :deploy do
 	   nuspec.dependency "RhinoMocks", "3.6"
 	   nuspec.dependency "structuremap.automocking", "2.6.2"
 	   nuspec.dependency "nunit", "2.5.10" if args.package_id.include? "nunit"
-	   nuspec.dependency "xunit", "1.7.0" if args.package_id.include? "xunit"
-	   nuspec.dependency "gallio", "3.2.601" unless args.package_id =~ /nunit|xunit|mstest/
+	   nuspec.dependency "xunit", "1.8.0" if args.package_id.include? "xunit"
+	   nuspec.dependency "gallio", "3.3.1" unless args.package_id =~ /nunit|xunit|mstest/
 	end
 	
 	nugetpack :package, :package_id do |p, args|
