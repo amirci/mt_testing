@@ -2,7 +2,7 @@
 *.user
 *.cache
 nuget
-Packages
+[Pp]ackages
 Reports
 TestResult.xml
 _Re*
